@@ -6,6 +6,6 @@ Application web Java/JSP pour la gestion des menus alimentaires dans un foyer do
 ##  Technologies
 - **Backend**: Java avec POO (héritage, encapsulation, interfaces)
 - **Frontend**: JSP pur (SANS JavaScript, SANS Servlet)
-- **Base de données**: MySQL
+- **Base de données**: PostgreSQL
 - **Serveur d'application**: Apache Tomcat
 
