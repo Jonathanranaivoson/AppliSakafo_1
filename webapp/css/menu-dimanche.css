@@ -1,0 +1,156 @@
+/* =============================================
+   MENU DIMANCHE - Freshy Soft Mint
+   Bleu-pétrole dominant | Vert = CTA accent
+   ============================================= */
+:root {
+    --bg: #F5F7F8;
+    --card-bg: #FFFFFF;
+    --text-main: #264653;
+    --text-muted: #6b8a7a;
+    --primary: #2ECC71;
+    --primary-hover: #27ae60;
+    --accent: #00AFB9;
+    --warning: #FFD166;
+    --danger: #e74c3c;
+    --border: #e0e7eb;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.6; }
+
+.header { background: var(--card-bg); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.03); position: sticky; top: 0; z-index: 100; }
+.header h1 { font-size: 1.3rem; font-weight: 900; color: var(--primary); }
+
+.header h1::before {
+  content: "";
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  background-image: url('../images/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.user-info { font-size: 0.9rem; color: var(--text-muted); }
+.logout-btn { margin-left: 15px; color: var(--danger); text-decoration: none; font-weight: 600; opacity: 0.8; }
+.logout-btn:hover { opacity: 1; }
+
+.nav-links { display: flex; gap: 0; background: var(--card-bg); border-bottom: 1px solid var(--border); padding: 0 5%; }
+.nav-links a { padding: 0.8rem 1.5rem; text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.9rem; border-bottom: 3px solid transparent; transition: all 0.3s; opacity: 0.8; }
+.nav-links a:hover { opacity: 1; color: var(--accent); }
+.nav-links a.active { color: var(--accent); border-bottom-color: var(--accent); opacity: 1; }
+
+.container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+
+.section-title { font-size: 1.15rem; font-weight: 800; margin: 25px 0 15px; color: var(--text-main); letter-spacing: -0.5px; }
+.section-title:first-of-type { margin-top: 0; }
+
+/* Tableau menu dimanche */
+.list-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 18px; overflow: hidden; box-shadow: 0 4px 15px rgba(38,70,83,0.05); margin-bottom: 30px; border: 1px solid rgba(0,0,0,0.02); }
+.list-table th { background: var(--text-main); color: white; padding: 12px 15px; text-align: left; font-size: 0.85rem; font-weight: 700; }
+.list-table td { padding: 11px 15px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+.list-table tr:hover { background: #f0f4f8; }
+
+.badge { padding: 3px 12px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; }
+.badge-pdj { background: #d0f0f5; color: #00686e; }
+.badge-dej { background: #e0f2fe; color: #0369a1; }
+.badge-din { background: #fff3cd; color: #856404; }
+
+/* Formulaire insertion dimanche */
+.form-card {
+    background: var(--card-bg);
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(38,70,83,0.05);
+    border: 1px solid rgba(0,0,0,0.02);
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+.form-card .form-group { margin-bottom: 18px; }
+
+.form-card label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.form-card select,
+.form-card input[type="date"] {
+    width: 100%;
+    padding: 11px 14px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    background: var(--bg);
+    transition: border-color 0.3s;
+    cursor: pointer;
+}
+.form-card select:focus,
+.form-card input[type="date"]:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--card-bg);
+}
+
+.btn-insert {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 8px 15px rgba(46,204,113,0.2);
+    width: 100%;
+}
+.btn-insert:hover {
+    filter: brightness(1.05);
+    box-shadow: 0 12px 20px rgba(46,204,113,0.3);
+}
+
+.success-msg {
+    background: #eafaf1;
+    color: #166534;
+    padding: 12px 18px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-left: 4px solid var(--primary);
+}
+
+.error { color: var(--danger); padding: 15px; background: #fef2f2; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid var(--danger); }
+
+.empty-msg {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.back-link { display: inline-block; margin-bottom: 20px; color: var(--accent); text-decoration: none; font-weight: 600; }
+.back-link:hover { text-decoration: underline; }
+
+.notification {
+    background-color: var(--warning);
+    color: var(--text-main);
+    padding: 1rem 1.5rem;
+    border-radius: 18px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.3);
+}

@@ -1,0 +1,141 @@
+/* =============================================
+   AJOUTER RECETTE - Freshy Soft Mint
+   Bleu-pétrole dominant | Vert = CTA accent
+   ============================================= */
+:root {
+    --bg: #F5F7F8;
+    --card-bg: #FFFFFF;
+    --text-main: #264653;
+    --text-muted: #6b8a7a;
+    --primary: #2ECC71;
+    --accent: #00AFB9;
+    --danger: #e74c3c;
+    --border: #e0e7eb;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.6; }
+
+.header { background: var(--card-bg); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.03); position: sticky; top: 0; z-index: 100; }
+.header h1 { font-size: 1.3rem; font-weight: 900; color: var(--primary); }
+
+.header h1::before {
+  content: "";
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  background-image: url('../images/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.user-info { font-size: 0.9rem; color: var(--text-muted); }
+.logout-btn { margin-left: 15px; color: var(--danger); text-decoration: none; font-weight: 600; opacity: 0.8; }
+.logout-btn:hover { opacity: 1; }
+
+.nav-links { display: flex; gap: 0; background: var(--card-bg); border-bottom: 1px solid var(--border); padding: 0 5%; }
+.nav-links a { padding: 0.8rem 1.5rem; text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.9rem; border-bottom: 3px solid transparent; transition: all 0.3s; opacity: 0.8; }
+.nav-links a:hover { opacity: 1; color: var(--accent); }
+.nav-links a.active { color: var(--accent); border-bottom-color: var(--accent); opacity: 1; }
+
+.container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+
+.section-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 20px; color: var(--text-main); letter-spacing: -0.5px; }
+
+/* Formulaire */
+.form-card {
+    background: var(--card-bg);
+    border-radius: 22px;
+    padding: 35px;
+    box-shadow: 0 4px 15px rgba(38,70,83,0.05);
+    border: 1px solid rgba(0,0,0,0.02);
+    max-width: 550px;
+}
+
+.form-card .form-group { margin-bottom: 20px; }
+
+.form-card label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.form-card input[type="text"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    background: var(--bg);
+    transition: border-color 0.3s;
+}
+.form-card input[type="text"]:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--card-bg);
+}
+
+.form-card select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    background: var(--bg);
+    transition: border-color 0.3s;
+    cursor: pointer;
+}
+.form-card select:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--card-bg);
+}
+
+.btn-insert {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 8px 15px rgba(46,204,113,0.2);
+    width: 100%;
+}
+.btn-insert:hover {
+    filter: brightness(1.05);
+    box-shadow: 0 12px 20px rgba(46,204,113,0.3);
+}
+
+.success-msg {
+    background: #eafaf1;
+    color: #166534;
+    padding: 12px 18px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-left: 4px solid var(--primary);
+}
+
+.error {
+    color: var(--danger);
+    padding: 12px 18px;
+    background: #fef2f2;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--danger);
+}
+
+.back-link { display: inline-block; margin-bottom: 20px; color: var(--accent); text-decoration: none; font-weight: 600; }
+.back-link:hover { text-decoration: underline; }

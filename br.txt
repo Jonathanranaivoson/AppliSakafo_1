@@ -1,0 +1,35 @@
+TABLE A CREER:
+---------------
+* maraina (id, nom)
+* atoandro (id, nom)
+* hariva (id, nom)
+* boisson (id, nom)
+* menu_maraina (id, nom, id_maraina(FK), id_boisson(FK))
+* menu_journalier (id, id_menu_maraina(FK), id_atoandro(FK), id_hariva(FK))
+* dinner_extra (id, id_hariva(FK))
+ Si tu trouve des ameliorations propose moi et dis moi d'autre tables a creer si necessaires
+
+
+--------------------------
+
+Ajout majeur maintenant :
+_ Rajoute moi un sidebar sur tous les pages dans pages/ incluant les liens suivants:
+  * Ajouter Recettes/menu : redirige vers une nouvelle page de formulaire pour inclure un nouveau menu
+    |->  formulaire (on insere la Recette) + on choisit si petit-dejeuner, dejeuner ou dinner + Inserer
+         De ce fait on creera un table sql Recette_ajoutee contenant les nouvelle Recette
+  * Recettes ajoutee : 3 tableaux (petit-dejeuner, dejeuner et dinner) listant les Recettes ajoutee
+  * Menu Dimanche: Affichage de la liste du menu speciale dimanche (plats, date) + boutons: inserer nouveau menu (Formulaire d'insertion/drop-list pour petit-dejeuner, dejeuner ou dinner + Valider)
+    |-> - Creation table SQL menu_dimanche
+_ Rajoute Moi un footer dans menu.jsp et statistique.jsp, texte du footer : "Maison Amboanjobe - Copyright 2026"
+
+---------
+UPDATE users
+SET nom = 'Ranaivoson', 
+    prenom = 'Jonathan' 
+WHERE id = 1;
+
+
+---------------------------------
+
+Lundi 24 Fev 2026
+Update : Ajout et interchangeabilite de nouvelle Recette avec les anciens

@@ -1,0 +1,76 @@
+/* =============================================
+   HARIVA (Diner) - Freshy Soft Mint
+   Vert = accent | Bleu-pétrole = dominant | Teal = hover
+   ============================================= */
+:root {
+    --bg: #F5F7F8;
+    --card-bg: #FFFFFF;
+    --text-main: #264653;
+    --text-muted: #6b8a7a;
+    --primary: #2ECC71;
+    --accent: #00AFB9;
+    --warning: #FFD166;
+    --danger: #e74c3c;
+    --border: #e0e7eb;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.6; }
+
+.header {
+    background: var(--card-bg);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header h1 { font-size: 1.3rem; font-weight: 900; color: var(--primary); }
+
+.header h1::before {
+  content: "";
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  background-image: url('../images/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.user-info { font-size: 0.9rem; color: var(--text-muted); }
+.logout-btn { margin-left: 15px; color: var(--danger); text-decoration: none; font-weight: 600; opacity: 0.8; }
+.logout-btn:hover { opacity: 1; }
+
+.nav-links { display: flex; gap: 0; background: var(--card-bg); border-bottom: 1px solid var(--border); padding: 0 5%; }
+.nav-links a { padding: 0.8rem 1.5rem; text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.9rem; border-bottom: 3px solid transparent; transition: all 0.3s; opacity: 0.8; }
+.nav-links a:hover { opacity: 1; color: var(--accent); }
+.nav-links a.active { color: var(--accent); border-bottom-color: var(--accent); opacity: 1; }
+
+.container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+
+.section-title { font-size: 1.15rem; font-weight: 800; margin: 25px 0 15px; color: var(--text-main); letter-spacing: -0.5px; }
+.section-title:first-of-type { margin-top: 0; }
+
+/* Tableaux — header bleu-pétrole */
+.list-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 18px; overflow: hidden; box-shadow: 0 4px 15px rgba(38,70,83,0.05); margin-bottom: 30px; border: 1px solid rgba(0,0,0,0.02); }
+.list-table th { background: var(--text-main); color: white; padding: 12px 15px; text-align: left; font-size: 0.85rem; font-weight: 700; }
+.list-table td { padding: 11px 15px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+.list-table tr:hover { background: #f0f4f8; }
+
+/* Badges — couleurs variées */
+.badge { padding: 3px 12px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; }
+.badge-1 { background: #e0f2fe; color: #0369a1; }
+.badge-2 { background: #fff3cd; color: #856404; }
+.badge-3 { background: #d0f0f5; color: #00686e; }
+.badge-4 { background: #fce4ec; color: #880e4f; }
+.badge-extra { background: #e8daef; color: #6c3483; }
+
+.error { color: var(--danger); padding: 15px; background: #fef2f2; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid var(--danger); }
+.back-link { display: inline-block; margin-bottom: 20px; color: var(--accent); text-decoration: none; font-weight: 600; }
+.back-link:hover { text-decoration: underline; }

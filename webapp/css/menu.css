@@ -1,0 +1,255 @@
+:root {
+    --bg: #F5F7F8;
+    --card-bg: #FFFFFF;
+    --text-main: #264653;
+    --text-muted: #6b8a7a;
+    --primary: #2ECC71;
+    --primary-hover: #27ae60;
+    --primary-light: #eafaf1;
+    --accent: #00AFB9;
+    --warning: #FFD166;
+    --danger: #e74c3c;
+    --success: #2ECC71;
+    --border: #e0e7eb;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* Header — blanc pur, logo vert accent, nav texte pétrole */
+.header {
+    background: var(--accent);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.header h1 { font-size: 1.3rem; font-weight: 900; color: var(--text-main); }
+
+.header h1::before {
+  content: "";
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  background-image: url('../images/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.user-info { font-size: 0.9rem; color: var(--card-bg); }
+.logout-btn { margin-left: 15px; color: var(--danger); text-decoration: none; font-weight: 600; opacity: 0.8; transition: 0.3s; }
+.logout-btn:hover { opacity: 1; }
+
+/* Navigation — texte pétrole, hover teal (PAS vert) */
+.nav-links {
+    display: flex;
+    gap: 0;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+}
+.nav-links a {
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+    opacity: 0.8;
+}
+.nav-links a:hover {
+    opacity: 1;
+    color: var(--accent);
+}
+.nav-links a.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    opacity: 1;
+}
+
+.container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+
+/* Sélecteur groupe — bleu-pétrole actif, teal hover */
+.groupe-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    align-items: center;
+}
+.groupe-selector span { font-weight: 700; margin-right: 10px; color: var(--text-main); }
+.groupe-btn {
+    padding: 8px 22px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    background: var(--card-bg);
+    color: var(--text-main);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+.groupe-btn:hover { border-color: var(--accent); color: var(--accent); }
+.groupe-btn.active { background: var(--text-main); color: white; border-color: var(--text-main); }
+
+/* Tableau — header bleu-pétrole (PAS vert) */
+.menu-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(38, 70, 83, 0.05);
+    border: 1px solid rgba(0,0,0,0.02);
+}
+.menu-table th {
+    background: var(--text-main);
+    color: white;
+    padding: 13px 15px;
+    text-align: left;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+.menu-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+.menu-table tr:hover { background: #f0f4f8; }
+.menu-table tr.fait { background: #f0faf4; }
+
+.fait-badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.fait-oui { background: #eafaf1; color: #166534; }
+.fait-non { background: #fef2f2; color: #991b1b; }
+
+.section-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+}
+
+.error {
+    color: var(--danger);
+    padding: 15px;
+    background: #fef2f2;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--danger);
+}
+
+/* Checkbox — vert accent OK (sémantique succès) */
+.checkbox-fait { width: 18px; height: 18px; cursor: pointer; accent-color: var(--success); }
+
+/* Bouton modifier — style tag subtil, teal */
+.btn-modifier {
+    padding: 5px 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 700;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+.btn-modifier:hover { background: var(--accent); color: white; border-color: var(--accent); }
+
+/* Modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(38, 70, 83, 0.4);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+.modal-overlay.active { display: flex; }
+.modal {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 22px;
+    width: 450px;
+    max-width: 90%;
+    box-shadow: 0 10px 40px rgba(38, 70, 83, 0.15);
+    border: 1px solid rgba(0,0,0,0.02);
+}
+.modal h3 { margin-bottom: 20px; font-size: 1.1rem; color: var(--text-main); font-weight: 800; }
+.modal label { font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 6px; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.3px; }
+.modal select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    color: var(--text-main);
+    background: var(--bg);
+    transition: border-color 0.3s;
+}
+.modal select:focus { outline: none; border-color: var(--accent); background: var(--card-bg); }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+.modal-actions button {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+/* CTA Save = vert (accent bouton) */
+.btn-save {
+    background: var(--primary);
+    color: white;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.9rem;
+    width: 100%;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+    box-shadow: 0 8px 15px rgba(46, 204, 113, 0.2);
+}
+.btn-save:hover { filter: brightness(1.05); box-shadow: 0 12px 20px rgba(46, 204, 113, 0.3); }
+.btn-cancel {
+    padding: 10px 22px;
+    background: var(--bg);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.btn-cancel:hover { background: var(--border); }
+
+.td-actions { white-space: nowrap; }
+
+
+

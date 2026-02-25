@@ -1,0 +1,99 @@
+PROJET APPLICATION WEB : APPLICATION DE GESTION DES MENUS JOURNALIERE DANS UN FOYER DOMESTIQUES
+Format : Java/Jsp
+Base de donnees : PostgreSQL
+
+------------------------------
+1. INTITULEE ET SUJET:
+* Plan menu = ensemble d'un ou plusieur menus
+
+ a) Application permettant de planifier et gerer les menus alimentaires journalier dans un foyer domestiques
+     |-> Plannifier, Gerer et prevoir les courses a faire si dans le BESOINS
+ b) Regle en generale:
+     * Petit-dejeuner: 
+          -> repartit comme suit: _ groupe 1 (pour les riz + met)
+                                  _ groupe 2 (extra ou les noms riz(pain, Cereales, ...))
+                                  _ Boisson
+          -> Petit-dejeuner = menu(issu groupe 1 ou 2) + Boisson
+     * Dejeuner:
+          -> repartit comme suit: _ 4 groupe de 6 menus chacune (24 menu en tout) sauf dimanche
+     * Diner:
+          -> repartit comme suit: _ 4 groupe de 6 menus chacune (24 menu en tout) sauf dimanche
+          -> le diner contient un autre groupe nommee extra contenant d'autres menus interchangeable avec les menus du diner
+ c) L'Application se voit comme suit:
+      * Chaque jour = 1 plan menu -> Un Petit dejeuner + Un Dejeuner + Un Diner
+      * Chaque semaine = 6 menus differente (dimanche non inclus)
+      * Chaque menu peut etre interchangee avec d'autre menu
+      * Vu la regle des 4 groupes de menu hebdomadaire(contenant 6 menu journaliere (dejeuner et diner)) , les menus peut revenir apres fin de cycle:
+          -> ex: semaine 1 = groupe 1
+                 semaine 2 = groupe 2
+                 ... le cycle revient lorsque semaine 4 = groupe 4 est terminee
+      * Le Petit-dejeuner etant non divisee semblable a celui du Dejeuner et Diner (4 groupes de 6 menus), elle se repartit equitablement avec les Dejeuner et Diner
+ d) _ On peut modifier/interchangee un menu journalier
+      |-> ex: Petit-Dejeuner jour 1 -> Petit-Dejeuner jour 5 (et vice versa)
+    _ On peut modifier/interchangee un menu hebdomadaire (autorisee seulement au debut du cycle)
+      |-> ex: menu semaine 4 -> menu semaine 3
+    _Seulement les menus de meme categorie peuvent s'echanger entre eux
+
+
+------------------------------
+2. REGLES DE CONCEPTION ET INTERFACE:
+ a) Base de donnees: PostgreSQL
+   -> Table a cree: * User -> l'utilisateur(consideree comme l'employe) qui doit se connecter pour acceder a l'application
+                    * maraina -> liste recettes petit dej
+                    * atoandro -> liste recettes dej
+                    * hariva -> liste recettes diner
+                    * boisson -> liste des boissons(avec petit dej)
+                    * menu_maraina -> liste Petit-Dejeuner + boisson
+                    * menu_journalier -> Petit-Dejeuner(menu_maraina) + Dejeuner + Diner
+                    * diner_extra -> contenant les autres plat/recettes pour le diner (pas dans les 4 groupes)
+ b) Affichage : _ Menu principale contenant :
+                  |-> _ navbar
+                      _ liens (en div): * Petit-Dejeuner(Petit-Dejeuner)
+                                        * Dejeuner(Dejeuner)
+                                        * Diner(Diner)
+                                          |-> * Extra (Diner) : lien dans la page sur les 
+                                        * Menu : liens vers la liste en tableau des menus hebdomadaire (tableau 1, tableau 2, ...) 
+                                        * Statistique : affichant la liste des recettes deja cuisinee/fait avec certains informations (nombre de fois, date, ...) 
+                      _ Menu de la semaine (un tableau contenant les menus journalier)
+                _ Les menus journalier s'affichera en tableaux de 6 lignes(chaque ligne = 1 plan menu (Petit Dejeuner + Dejeuner +  Diner))
+                   |-> - Chaque ligne auront un case a cocher(a cocher par l'utilsateir si deja cuisinee/fait) + bouton modifier
+                       - bouton modifier = chaque menu peut etre modifier, si modif -> affichage liste deroulante des proposition
+
+
+------------------------------
+3. REGLES TECHNIQUE ET BESOINS AU NIVEAU DU CODE :
+  _ Tous les notions de POO necessaire seront appliquee ( encapsulation, heritage, ...)
+  _ Tous les notions de POO avancee necessaire seront appliquee (je te laisse proposer qui est mieux entre Abstract, Surdefinition, ...)
+  _ Utilisation et gestion de la notion Exception (pour gerer les exceptions)
+  _ Utilisation de vector ou Arraylist (je te laisse choisir qui est mieux pour le projet)
+  _ Limiter au maximum la complexite dans chaque code (pas de notion trop avancee ni trop compliquee)
+  _ Chaque fonction ou methode ne depasse pas les 10-12 lignes , sauf pour des methodes ou cas exceptionnelle
+  _ Creation d'une classe a part MonException.java qui va gerer tous les exceptions (met dans le package utils MonException.java)
+
+-------------------------------
+4. ARBORESCENCE PROJET : 
+
+  AppliSakafo/
+├── src/                         
+│   ├── model/
+│   │    ├── tous les classes .java qui seront utiles             
+│   ├── dao/
+│   │    ├── 'nomApproprie'_DAO.java (partie cote metier du projet)
+│   ├── utils/                # Connexion DB
+│   │    └── Connexion.java
+│   ├──  exception/
+|       └── classe AppException contenant les exceptions
+├── webapp/                        
+│   ├── WEB-INF/
+│   │   ├── web.xml
+│   │   ├── classes/              ← .class compilés (généré)
+│   │   └── lib/
+│   │       └── postgresql-42.7.1.jar //je l'ai deja ce driver pour ce connecter a postgresql
+│   ├── index.jsp
+│   └── pages/
+|        ├── les pages jsp qu'on aura besoin pour l'Affichage et l'interface
+│ 
+├── sql/  
+│   ├── schemes.sql (contenant les tables)
+│   └── data.sql (contenant les donnees)
+└── deploy.sh 

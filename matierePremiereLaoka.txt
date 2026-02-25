@@ -1,0 +1,65 @@
+MATIERE PREMIERE SAKAFO :
+--------------------------------------------------------------------------------
+
+-- Laoka @ vary --
+
+* VIANDES :
+  - Hen'Omby :
+     - Tongony
+     - Hena tsotra
+     - Kitoza
+     - Autre partie Hen'Omby
+  - Hena Kisoa :
+     - Cote
+     - Echine
+     - Hena tsotra
+     - Hodiny 
+     - Kitoza
+     - Autre partie Hena Kisoa
+  - Akoho :
+     - Blanc de Poulet
+     - Cuisse de Poulet
+     - Hena Akoho tsotra (na carcasse)
+     - Autre partie Hena Akoho
+  - Poisson :
+     - Boulette de Poisson
+     - Filet de Poisson
+     - Trondro tsotra
+     - Autre partie Trondro
+  - Other :
+     - Saussice :
+        - tsotra
+        - Fumee
+        - type hafa
+     - Boulette 
+
+* LEGUMES :
+     - Carrotes
+     - Haricot-Vert
+     - Ovy
+     - Chou-fleur
+     - Anana :
+        - Petsay
+        - Ty-sam
+     - Poivron
+     - Tomates
+     - Champignon
+     - Poireaux
+     - Tongolo
+     - Tongolo maitso
+     - Celeri / Kotomila
+
+* VOAMAINA : 
+     - Tsaramaso :
+        - lena
+        - maina
+        - mena
+     - Voanjobory
+     - Kabaro
+     - Lentille
+     - Tsiasisa
+     - Petit pois
+
+* OTHER :
+     - Atody
+     - Ravi-toto
