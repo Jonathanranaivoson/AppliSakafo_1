@@ -82,3 +82,106 @@ body { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; background: var(
 .error { color: var(--danger); padding: 15px; background: #fef2f2; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid var(--danger); }
 .back-link { display: inline-block; margin-bottom: 20px; color: var(--accent); text-decoration: none; font-weight: 600; }
 .back-link:hover { text-decoration: underline; }
+
+/* === TOP 3 CLASSEMENT === */
+.top3-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.top3-column {
+    background: var(--card-bg);
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(38,70,83,0.05);
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+.top3-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.top3-pdj { background: #d0f0f5; color: #00686e; }
+.top3-dej { background: #e0f2fe; color: #0369a1; }
+.top3-din { background: #fff3cd; color: #856404; }
+
+.top3-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 12px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    transition: transform 0.2s;
+}
+
+.top3-item:hover {
+    transform: translateX(5px);
+    background: #f0f4f8;
+}
+
+.top3-rank {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.top3-rank.gold { background: linear-gradient(135deg, #FFD700, #FFA500); color: white; box-shadow: 0 4px 10px rgba(255,215,0,0.4); }
+.top3-rank.silver { background: linear-gradient(135deg, #C0C0C0, #A8A8A8); color: white; box-shadow: 0 4px 10px rgba(192,192,192,0.4); }
+.top3-rank.bronze { background: linear-gradient(135deg, #CD7F32, #B8860B); color: white; box-shadow: 0 4px 10px rgba(205,127,50,0.4); }
+
+.top3-info {
+    flex: 1;
+}
+
+.top3-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    margin-bottom: 8px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #e0e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--primary));
+    border-radius: 10px;
+    transition: width 0.8s ease;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.top3-count {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-align: right;
+}
+
+.no-data {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 30px;
+    font-style: italic;
+}

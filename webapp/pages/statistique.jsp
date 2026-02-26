@@ -52,6 +52,27 @@
         rsM.close(); psM.close();
         conn.close();
     } catch (Exception e) { erreur = "Erreur lors de la recuperation des statistiques"; }
+
+    // Créer les Top 3 pour chaque catégorie
+    ArrayList<StatRecette> top3PetitDej = new ArrayList<>();
+    ArrayList<StatRecette> top3Dejeuner = new ArrayList<>();
+    ArrayList<StatRecette> top3Diner = new ArrayList<>();
+
+    // Trouver le maximum global pour les barres de progression
+    int maxGlobal = 0;
+
+    // Trier et filtrer pour chaque type
+    for (StatRecette s : stats) {
+        if (s.nbFois > maxGlobal) maxGlobal = s.nbFois;
+        
+        if (s.type.equals("Petit-Dej") && top3PetitDej.size() < 3) {
+            top3PetitDej.add(s);
+        } else if (s.type.equals("Dejeuner") && top3Dejeuner.size() < 3) {
+            top3Dejeuner.add(s);
+        } else if (s.type.equals("Diner") && top3Diner.size() < 3) {
+            top3Diner.add(s);
+        }
+    }
 %>
 <!DOCTYPE html>
 <html>
@@ -106,6 +127,83 @@
         <% } else if (stats.isEmpty()) { %>
             <div class="info-box">Aucune recette n'a encore ete marquee comme faite.</div>
         <% } else { %>
+
+        <!-- Top 3 par catégorie -->
+        <div class="top3-container">
+            <!-- Petit-Déjeuner -->
+            <div class="top3-column">
+                <h3 class="top3-title top3-pdj">📋 Petit-Dejeuner</h3>
+                <% if (top3PetitDej.isEmpty()) { %>
+                    <p class="no-data">Aucune donnée</p>
+                <% } else {
+                    int pos = 1;
+                    for (StatRecette s : top3PetitDej) {
+                        int pourcentage = maxGlobal > 0 ? (s.nbFois * 100 / maxGlobal) : 0;
+                        String medalClass = pos == 1 ? "gold" : pos == 2 ? "silver" : "bronze";
+                %>
+                    <div class="top3-item">
+                        <div class="top3-rank <%= medalClass %>"><%= pos++ %></div>
+                        <div class="top3-info">
+                            <div class="top3-name"><%= s.nom %></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: <%= pourcentage %>%"></div>
+                            </div>
+                            <div class="top3-count"><%= s.nbFois %> fois</div>
+                        </div>
+                    </div>
+                <% } } %>
+            </div>
+
+            <!-- Déjeuner -->
+            <div class="top3-column">
+                <h3 class="top3-title top3-dej">📋 Dejeuner</h3>
+                <% if (top3Dejeuner.isEmpty()) { %>
+                    <p class="no-data">Aucune donnee</p>
+                <% } else {
+                    int pos = 1;
+                    for (StatRecette s : top3Dejeuner) {
+                        int pourcentage = maxGlobal > 0 ? (s.nbFois * 100 / maxGlobal) : 0;
+                        String medalClass = pos == 1 ? "gold" : pos == 2 ? "silver" : "bronze";
+                %>
+                    <div class="top3-item">
+                        <div class="top3-rank <%= medalClass %>"><%= pos++ %></div>
+                        <div class="top3-info">
+                            <div class="top3-name"><%= s.nom %></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: <%= pourcentage %>%"></div>
+                            </div>
+                            <div class="top3-count"><%= s.nbFois %> fois</div>
+                        </div>
+                    </div>
+                <% } } %>
+            </div>
+
+            <!-- Dîner -->
+            <div class="top3-column">
+                <h3 class="top3-title top3-din">📋 Diner</h3>
+                <% if (top3Diner.isEmpty()) { %>
+                    <p class="no-data">Aucune donnée</p>
+                <% } else {
+                    int pos = 1;
+                    for (StatRecette s : top3Diner) {
+                        int pourcentage = maxGlobal > 0 ? (s.nbFois * 100 / maxGlobal) : 0;
+                        String medalClass = pos == 1 ? "gold" : pos == 2 ? "silver" : "bronze";
+                %>
+                    <div class="top3-item">
+                        <div class="top3-rank <%= medalClass %>"><%= pos++ %></div>
+                        <div class="top3-info">
+                            <div class="top3-name"><%= s.nom %></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: <%= pourcentage %>%"></div>
+                            </div>
+                            <div class="top3-count"><%= s.nbFois %> fois</div>
+                        </div>
+                    </div>
+                <% } } %>
+            </div>
+        </div>
+
+        <div class="section-title" style="margin-top: 40px;">Liste complete des recettes</div>
 
         <table class="list-table">
             <thead>
