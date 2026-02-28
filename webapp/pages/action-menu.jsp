@@ -1,4 +1,4 @@
-<%@ page import="dao.MenuJournalierDAO, exception.AppException" %>
+<%@ page import="dao.MenuJournalierDAO, model.MenuJournalier, java.util.ArrayList, exception.AppException" %>
 <%
     // Verifier session
     if (session.getAttribute("user") == null) {
@@ -22,6 +22,21 @@
             String faitStr = request.getParameter("fait");
             boolean fait = "true".equals(faitStr);
             mjDAO.cocherFait(menuId, fait);
+
+            // Vérifier si tous les menus du groupe sont maintenant cochés
+            ArrayList<MenuJournalier> menus = mjDAO.getByGroupe(groupe);
+            boolean tousFaits = true;
+            for (MenuJournalier mj : menus) {
+                if (!mj.isFait()) {
+                    tousFaits = false;
+                    break;
+                }
+            }
+            
+            // Si tous faits, stocker info en session pour afficher la modal
+            if (tousFaits) {
+                session.setAttribute("groupeTermine", groupe);
+            }
 
         } else if ("modifAtoandro".equals(action)) {
             int newId = Integer.parseInt(request.getParameter("newAtoandroId"));

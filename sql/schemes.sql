@@ -89,3 +89,15 @@ CREATE TABLE menu_dimanche (
     date_menu DATE NOT NULL,
     date_ajout DATE DEFAULT CURRENT_DATE
 );
+
+
+----------------
+----------------
+
+CREATE TABLE semaines_groupe (
+    id SERIAL PRIMARY KEY,
+    groupe INT NOT NULL UNIQUE CHECK (groupe BETWEEN 1 AND 4),
+    date_debut DATE NOT NULL,
+    date_fin DATE NOT NULL,
+    CHECK (date_fin >= date_debut)
+);

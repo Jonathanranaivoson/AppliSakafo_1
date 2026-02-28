@@ -1,4 +1,4 @@
-<%@ page import="model.User, model.MenuJournalier, model.Atoandro, model.Hariva, model.MenuMaraina, dao.MenuJournalierDAO, dao.AtoandroDAO, dao.HarivaDAO, dao.MenuMarainaDAO, java.util.ArrayList, exception.AppException" %>
+<%@ page import="model.User, model.MenuJournalier, model.Atoandro, model.Hariva, model.MenuMaraina, model.SemaineGroupe, dao.MenuJournalierDAO, dao.AtoandroDAO, dao.HarivaDAO, dao.MenuMarainaDAO, dao.SemaineGroupeDAO, java.util.ArrayList, exception.AppException" %>
 <%
     User user = (User) session.getAttribute("user");
     if (user == null) {
@@ -17,7 +17,14 @@
     ArrayList<Atoandro> tousAtoandro = new ArrayList<>();
     ArrayList<Hariva> tousHariva = new ArrayList<>();
     ArrayList<MenuMaraina> tousMenuMaraina = new ArrayList<>();
+    SemaineGroupe semaineActuelle = null;
     String erreur = null;
+
+    // Vérifier si un groupe vient d'être terminé
+    Integer groupeTermine = (Integer) session.getAttribute("groupeTermine");
+    if (groupeTermine != null) {
+        session.removeAttribute("groupeTermine");
+    }
 
     // Erreur venant de action-menu.jsp
     String erreurAction = (String) session.getAttribute("erreurAction");
@@ -29,6 +36,28 @@
         tousAtoandro = new AtoandroDAO().getAll();
         tousHariva = new HarivaDAO().getAll();
         tousMenuMaraina = new MenuMarainaDAO().getAll();
+        
+        // Récupérer la semaine du groupe actuel
+        SemaineGroupeDAO sgDAO = new SemaineGroupeDAO();
+        semaineActuelle = sgDAO.getByGroupe(groupeActuel);
+
+        // Vérification automatique : si tous les menus sont "fait" et pas de paramètre groupe, passer au suivant
+        if (!menus.isEmpty() && paramGroupe == null && groupeTermine == null) {
+            boolean tousFaits = true;
+            for (MenuJournalier mj : menus) {
+                if (!mj.isFait()) {
+                    tousFaits = false;
+                    break;
+                }
+            }
+            // Si tous faits et qu'il y a un groupe suivant, rediriger
+            if (tousFaits) {
+                int groupeSuivant = groupeActuel < 4 ? (groupeActuel + 1) : 1;
+                response.sendRedirect("menu.jsp?groupe=" + groupeSuivant);
+                return;
+            }
+        }
+
     } catch (AppException e) {
         erreur = e.getMessage();
     }
@@ -78,6 +107,17 @@
 
         </aside>
     <div class="container">
+
+        <!-- Affichage de la période de la semaine -->
+        <a href="config-semaines.jsp?groupe=<%= groupeActuel %>" class="semaine-info" title="Cliquer pour configurer les dates">
+            <span class="semaine-icon">📋</span>
+            <% if (semaineActuelle != null) { %>
+                <span class="semaine-text">Semaine du <%= semaineActuelle.getPeriodeFormatee() %></span>
+            <% } else { %>
+                <span class="semaine-text">Semaine non definie - Cliquer pour configurer</span>
+            <% } %>
+            <span class="semaine-hint">📋 Configurer</span>
+        </a>
 
         <!-- Selecteur de semaine/groupe -->
         <div class="section-title">Menu de la semaine - Groupe <%= groupeActuel %></div>
@@ -224,6 +264,30 @@
         </div>
     </div>
 
+    <!-- Modal de confirmation de groupe terminé -->
+    <div class="modal-overlay" id="modalTermine">
+        <div class="modal modal-success">
+            <div class="modal-success-icon">📋</div>
+            <h3>Groupe <%= groupeActuel %> termine !</h3>
+            <p class="modal-success-text">
+                Felicitations ! Tous les menus du Groupe <%= groupeActuel %> ont ete cuisines.
+            </p>
+            <% if (groupeActuel < 4) { %>
+                <p class="modal-success-text">Vous pouvez maintenant passer au Groupe <%= groupeActuel + 1 %>.</p>
+            <% } else { %>
+                <p class="modal-success-text">Tous les groupes sont termines ! Retour au Groupe 1.</p>
+            <% } %>
+            <div class="modal-actions" style="margin-top: 25px">
+                <button class="btn-save" onclick="passerGroupeSuivant()" style="width: auto; padding: 12px 30px">
+                    <%= groupeActuel < 4 ? "Passer au Groupe " + (groupeActuel + 1) : "Revenir au Groupe 1" %>
+                </button>
+                <button class="btn-cancel" onclick="fermerModalTermine()">Rester ici</button>
+            </div>
+        </div>
+    </div>
+
+
+
     <script>
     function ouvrirModal(menuId, jour, groupe) {
         document.getElementById('modalTitre').textContent = 'Modifier - ' + jour;
@@ -238,10 +302,24 @@
     function fermerModal() {
         document.getElementById('modalModif').classList.remove('active');
     }
+    function fermerModalTermine() {
+        document.getElementById('modalTermine').classList.remove('active');
+    }
+    function passerGroupeSuivant() {
+        var groupeActuel = <%= groupeActuel %>;
+        var groupeSuivant = groupeActuel < 4 ? (groupeActuel + 1) : 1;
+        window.location.href = 'menu.jsp?groupe=' + groupeSuivant;
+    }
+
     // Fermer en cliquant en dehors
     document.getElementById('modalModif').addEventListener('click', function(e) {
         if (e.target === this) fermerModal();
     });
+
+    <% if (groupeTermine != null) { %>
+    // Afficher automatiquement la modal de groupe terminé
+    document.getElementById('modalTermine').classList.add('active');
+    <% } %>
     </script>
 </body>
 </html>

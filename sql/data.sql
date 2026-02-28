@@ -197,3 +197,11 @@ INSERT INTO menu_journalier (groupe, jour, id_menu_maraina, id_atoandro, id_hari
 INSERT INTO menu_journalier (groupe, jour, id_menu_maraina, id_atoandro, id_hariva) VALUES (4, 4, 22, 22, 22);
 INSERT INTO menu_journalier (groupe, jour, id_menu_maraina, id_atoandro, id_hariva) VALUES (4, 5, 23, 23, 23);
 INSERT INTO menu_journalier (groupe, jour, id_menu_maraina, id_atoandro, id_hariva) VALUES (4, 6, 24, 24, 24);
+
+
+-- Insertion des 4 groupes par défaut (dates à configurer)
+INSERT INTO semaines_groupe (groupe, date_debut, date_fin) VALUES
+(1, '2026-02-23', '2026-03-01');
+-- (2, '2026-03-08', '2026-03-14'),
+-- (3, '2026-03-15', '2026-03-21'),
+-- (4, '2026-03-22', '2026-03-28');

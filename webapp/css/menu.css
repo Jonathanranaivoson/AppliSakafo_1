@@ -251,5 +251,76 @@ body {
 
 .td-actions { white-space: nowrap; }
 
+/* Affichage des dates de semaine */
+/* Affichage des dates de semaine */
+.semaine-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    background-color: #00949c;
+    /* background: linear-gradient(135deg, #00AFB9 0%, #00949c 100%); */
+    color: white;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 175, 185, 0.2);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+}
 
+.semaine-info:hover {
+    box-shadow: 0 6px 20px rgba(0, 175, 185, 0.3);
+    transform: translateY(-2px);
+}
 
+.semaine-icon {
+    font-size: 1.3rem;
+}
+
+.semaine-text {
+    flex: 1;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+    color: white;
+}
+
+.semaine-hint {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    font-weight: 600;
+    background-color: #264653;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+/* Modal de succès (groupe terminé) */
+.modal-success {
+    text-align: center;
+    max-width: 450px;
+}
+
+.modal-success-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    animation: bounce 0.6s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.modal-success h3 {
+    color: var(--success);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.modal-success-text {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
